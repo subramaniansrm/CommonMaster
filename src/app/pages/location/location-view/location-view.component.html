@@ -1,0 +1,85 @@
+<div class="content-pageXXX container-fluid">
+
+
+    <form #saveListForm [formGroup]="saveForm">
+      <div class="contentXXX main-content">
+        <article class="right-panel">
+          <app-left-nav></app-left-nav>
+          <h4 class="page-title">Location View</h4>
+          <div class="card">
+            <div class="card-body">
+          <div class="row">
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLocationName' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Location Name" formControlName="userLocationName" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLocationDetails' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Location Details" readonly formControlName="userLocationDetails">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'zip' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Zip" formControlName="zip" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'phone' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Phone" formControlName="phone" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'fax' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Fax" formControlName="fax" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'email' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" formControlName="email" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'contactName' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Contact Name" maxlength="20" formControlName="contactName" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'cityId' ">
+              <mat-form-field class="example-full-width readonly-wrapper">
+                <mat-select placeholder="City" formControlName="cityId">
+                  <mat-option *ngFor="let city of cityCombo" [value]="city.id">
+                    {{city.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'stateId' ">
+              <mat-form-field class="example-full-width readonly-wrapper">
+                <mat-select placeholder="State" formControlName="stateId">
+                  <mat-option *ngFor="let state of stateCombo" [value]="state.id">
+                    {{state.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'countryId' ">
+              <mat-form-field class="example-full-width readonly-wrapper">
+                <mat-select placeholder="Country" formControlName="countryId">
+                  <mat-option *ngFor="let country of countryCombo" [value]="country.id">
+                    {{country.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-3 readonly-wrapper">
+                <mat-checkbox formControlName="deleteFlag">Delete?</mat-checkbox>
+              </div> -->
+          </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button mat-raised-button color="warn" class="btn-orange" routerLink="/location">Back</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </form>
+  </div>

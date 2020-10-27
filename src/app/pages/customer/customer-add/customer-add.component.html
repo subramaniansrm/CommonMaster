@@ -1,0 +1,146 @@
+<div class="content-pageXXX container-fluid">
+
+  <form #saveListForm [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+    <div class="contentXXX main-content">
+      <article class="right-panel">
+        <app-left-nav></app-left-nav>
+        <h4 class="page-title">Customer Add</h4>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'customerCode'">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Customer Code" maxlength="7"
+                   onkeypress='return (event.charCode >= 48 && event.charCode <= 57)' formControlName="customerCode">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'customerName' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Customer Name" maxlength="50" formControlName="customerName">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'salesOrgId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Sales Organisation *" (selectionChange)="getPlant($event.value,saveForm)"
+                    formControlName="salesOrgId">
+                    <!-- <mat-option *ngFor="let country of countryCombo" [value]="country.countryId">
+                      {{country.countryName}}</mat-option> -->
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="salesOrgFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option *ngFor="let sales of salesCombo | dropdownFilter : {name: salesOrgFilter}"
+                      [value]="sales.salesOrgId">{{sales.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'distributionId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Distribution Name" formControlName="distributionId">
+                    <!-- <mat-option *ngFor="let country of countryCombo" [value]="country.countryId">
+                      {{country.countryName}}</mat-option> -->
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="distributionChannelFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option
+                      *ngFor="let channel of channelCombo | dropdownFilter : {name: distributionChannelFilter}"
+                      [value]="channel.id">{{channel.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'plantId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Plant" formControlName="plantId">
+                    <!-- <mat-option *ngFor="let country of countryCombo" [value]="country.countryId">
+                      {{country.countryName}}</mat-option> -->
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="plantFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option *ngFor="let plant of plantCombo | dropdownFilter : {name: plantFilter}"
+                      [value]="plant.id">{{plant.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'cityId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="City" formControlName="cityId">
+                    <!-- <mat-option *ngFor="let country of countryCombo" [value]="country.countryId">
+                      {{country.countryName}}</mat-option> -->
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox" [(ngModel)]="cityFilter"
+                      [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option *ngFor="let city of cityCombo | dropdownFilter : {name: cityFilter}" [value]="city.id">
+                      {{city.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'areaNagar' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Area Manager"  maxlength="50" formControlName="areaNagar">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'parentCode' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Parent Code" formControlName="parentCode">
+                </mat-form-field>
+              </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="row">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'parentName' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Parent Name" formControlName="parentName">
+                </mat-form-field>
+              </div>
+
+
+
+              <div class="col-md-3 mt-15 read-only" *ngIf="userBaseFieldName | arrayFilter : 'activeFlag' ">
+                <mat-checkbox formControlName="activeFlag"> Active  </mat-checkbox>
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button mat-raised-button color="warn" class="btn-orange mr-10" type="submit">Save</button>
+            <button mat-raised-button color="warn" class="btn-orange mr-10" type="reset">Clear</button>
+            <button mat-raised-button color="warn" class="btn-orange" routerLink="/customer">Back</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </form>
+</div>

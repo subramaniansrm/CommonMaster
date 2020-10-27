@@ -1,0 +1,238 @@
+<div class="content-pageXXX container-fluid">
+
+  <form #saveListForm [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+    <div class="contentXXX main-content">
+      <article class="right-panel">
+        <app-left-nav></app-left-nav>
+        <h4 class="page-title">User Modify</h4>
+        <div class="col-md-12">
+          <mat-card>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLoginId' ">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="User Login Id" formControlName="userLoginId" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userEmployeeId' ">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Employee Id" formControlName="userEmployeeId" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'firstName' ">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" formControlName="firstName">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'middleName' ">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Middle Name" formControlName="middleName">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'lastName' ">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="lastName">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLocation' ">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="User Location" formControlName="userLocation"
+                      (selectionChange)="getSubLocation($event.value)">
+                      <!-- <mat-option *ngFor="let location of userLocationCombo" [value]="location.id">
+                        {{location.userLocationName}}</mat-option> -->
+                      <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                        [(ngModel)]="locationFilter" [ngModelOptions]="{standalone: true}">
+                      <mat-option class="select-span">Select Here</mat-option>
+                      <mat-option
+                        *ngFor="let location of userLocationCombo  | dropdownFilter : {name: locationFilter}"
+                        [value]="location.id">{{location.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'subLocation' ">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="User SubLocation" formControlName="subLocation"
+                      (selectionChange)="getDeptLocation($event.value, saveForm.value.userLocation)">
+                      <!-- <mat-option *ngFor="let sublocation of userSubLocationCombo" [value]="sublocation.sublocationId">
+                        {{sublocation.subLocationName}}</mat-option> -->
+                      <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                        [(ngModel)]="sublocationFilter" [ngModelOptions]="{standalone: true}">
+                      <mat-option class="select-span">Select Here</mat-option>
+                      <mat-option
+                        *ngFor="let sublocation of userSubLocationCombo  | dropdownFilter : {name: sublocationFilter}"
+                        [value]="sublocation.id">{{sublocation.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <!-- <div class="col-md-3"  *ngIf="userBaseFieldName | arrayFilter : 'userRole' ">
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="User Role" formControlName="userRole">
+                <mat-option *ngFor="let role of userRoleCombo" [value]="role.id">
+                  {{role.userRoleName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3"  *ngIf="userBaseFieldName | arrayFilter : 'userDepartment' ">
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="User Department" formControlName="userDepartment">
+                <mat-option *ngFor="let department of userDeptCombo" [value]="department.id">
+                  {{department.userDepartmentName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>-->
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userDepartment' ">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="User Department" (selectionChange)="executerGetUSerRole($event.value)"
+                      formControlName="userDepartment">
+                      <!-- <mat-option *ngFor="let department of subLocationList" [value]="department.id">
+                        {{department.userDepartmentName}}</mat-option> -->
+                      <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                        [(ngModel)]="departmentFilter" [ngModelOptions]="{standalone: true}">
+                      <mat-option class="select-span">Select Here</mat-option>
+                      <mat-option
+                        *ngFor="let department of subLocationList  | dropdownFilter : {name: departmentFilter}"
+                        [value]="department.id">{{department.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userRole' ">
+                  <mat-form-field class="example-full-width">
+                    <mat-select placeholder="User Role" formControlName="userRole">
+                     
+                      <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                        [(ngModel)]="userFilter" [ngModelOptions]="{standalone: true}">
+                      <mat-option class="select-span">Select Here</mat-option>
+                      <mat-option *ngFor="let role of userRoleList  | dropdownFilter : {name: userFilter}"
+                        [value]="role.id"> {{role.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+
+              
+                <div class="col-md-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-select multiple  placeholder="Module" formControlName="moduleId">
+                   
+                      
+                      <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                        [(ngModel)]="divisionFilter" [ngModelOptions]="{standalone: true}">
+                      <mat-option class="select-span"  >Select Here</mat-option>
+                      <mat-option *ngFor="let mod of module  | dropdownFilter : {moduleName: divisionFilter}"
+                   [value]="mod.moduleId"> {{mod.moduleName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'division' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Division" formControlName="division">
+                    <!-- <mat-option *ngFor="let division of userDivisionCombo" [value]="division.id">
+                        {{division.division}}</mat-option> -->
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="divisionFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option
+                      *ngFor="let division of userDivisionCombo  | dropdownFilter : {division: divisionFilter}"
+                      [value]="division.id"> {{division.division}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'commonId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Level" formControlName="commonId">
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="levelFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span">Select Here</mat-option>
+                    <mat-option *ngFor="let level of levelCombo  | dropdownFilter : {itemValue: levelFilter}"
+                      [value]="level.commonId"> {{level.itemValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'emailId' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email Id" maxlength="50"
+                    pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" formControlName="emailId"
+                    >
+                </mat-form-field>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'phoneNumber' ">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)'
+                  maxlength="10" onpaste="return false" placeholder="Phone Number" formControlName="phoneNumber">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'mobile' ">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)'
+                  maxlength="10" onpaste="return false" placeholder="Mobile" formControlName="mobile">
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'password' ">
+              <mat-form-field>
+                <input matInput placeholder="Password" [type]="hide1 ? 'text' : 'password'" formControlName="password">
+                <mat-icon class="eyeicon" matSuffix (click)="hide1 = !hide1">
+                  {{hide1 ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'password' ">
+              <mat-form-field>
+                <input matInput placeholder="Confirm Password" [type]="hide ? 'text' : 'password'"
+                  formControlName="confirmPassword">
+                <mat-icon class="eyeicon" matSuffix (click)="hide = !hide">
+                  {{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+            </div> -->
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'currentAddress' ">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Current Address" maxlength="250"
+                  formControlName="currentAddress"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'permanentAddress' ">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Permanent Address" maxlength="250"
+                  formControlName="permanentAddress"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 readOnly" style="margin-top: 17px;"
+              *ngIf="userBaseFieldName | arrayFilter : 'activeFlag' ">
+              <mat-checkbox formControlName="activeFlag">Active</mat-checkbox>
+            </div>
+          </div>
+
+        </div>
+        </mat-card>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <br>
+        <button mat-raised-button color="warn" class="btn-orange mr-10" type="submit">Modify</button>
+        <!-- <button mat-raised-button color="warn" class="btn-orange mr-10" type="reset">Cancel</button> -->
+        <button mat-raised-button color="warn" class="btn-orange" routerLink="/user">Back</button>
+      </div>
+    </div>
+    </article>
+</div>
+</form>
+</div>

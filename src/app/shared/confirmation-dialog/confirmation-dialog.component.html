@@ -1,0 +1,129 @@
+<h3 class="popup_title"> {{ data.title }}
+  <button mat-button class="modal_close_icon" *ngIf="data.close == null" [mat-dialog-close]="false" cdkFocusInitial>
+    <i class="material-icons">
+      close
+    </i>
+  </button>
+</h3>
+
+<mat-dialog-content class="mat-typography md-dialog">
+  <div *ngIf="displayMessage === 'mandatory' ">
+    <p align="center">Please fill all mandatory fields</p>
+  </div>
+  <div *ngIf="displayMessage === 'submit' ">
+    <p align="center">Do you want to submit?</p>
+  </div>
+  <div *ngIf="displayMessage === 'access' ">
+    <p align="center">You dont have access to this page</p>
+  </div>
+  <div *ngIf="displayMessage === 'pwdmismatch'">
+    <p align="center">Password and Confirm Password didnot match</p>
+  </div>
+  <div *ngIf="displayMessage === 'delete' ">
+    <p align="center"> Do you want to delete this record(s)? </p>
+  </div>
+  <div *ngIf="displayMessage === 'singleSelection' ">
+    <p align="center"> Please select single record </p>
+  </div>
+  <div *ngIf="displayMessage === 'selection' ">
+    <p align="center"> Please select a record </p>
+  </div>
+  <div *ngIf="displayMessage === 'modify' ">
+    <p align="center"> Do you want to modify this record? </p>
+  </div>
+  <div *ngIf="displayMessage === 'close' ">
+    <p align="center"> Do you want to close this request? </p>
+  </div>
+  <div *ngIf="displayMessage === 'closedAlert' ">
+    <p align="center"> Request Closed </p>
+  </div>
+  <div *ngIf="displayMessage === 'reopen' ">
+    <p align="center"> Do you want to re-open this request? </p>
+  </div>
+  <div *ngIf="displayMessage === 'resubmitModify' ">
+    <p align="center"> Can't edit except resubmitted requests </p>
+  </div>
+  <div *ngIf="displayMessage === 'cancel' ">
+    <p align="center"> Do you want to cancel this request?</p>
+  </div>
+  <div *ngIf="displayMessage === 'download' ">
+    <p align="center">Do you want to download this item(s)?</p>
+  </div>
+  <div *ngIf="displayMessage === 'cancelAlert' ">
+    <p align="center">Request cannot be Cancel</p>
+  </div>
+  <!-- ****** Approval ******* -->
+  <div *ngIf="displayMessage === 'attachment' ">
+    <p align="center">No attachment Found</p>
+  </div>
+  <div *ngIf="displayMessage === 'remarks' ">
+    <p align="center">Please fill the remarks</p>
+  </div>
+  <div *ngIf="displayMessage === 'Approval' ">
+    <p align="center">Do you want to approve the request?</p>
+  </div>
+  <div *ngIf="displayMessage === 'Reject' ">
+    <p align="center">Do you want to reject the request?</p>
+  </div>
+  <div *ngIf="displayMessage === 'Resubmit' ">
+    <p align="center">Do you want to re-submit the request?</p>
+  </div>
+  <!-- ******* Password ********** -->
+  <div *ngIf="displayMessage === 'password' ">
+    <p align="center">Please enter the password</p>
+  </div>
+  <div *ngIf="displayMessage === 'confirmpassword' ">
+    <p align="center">Please check the confirm password</p>
+  </div>
+  <div *ngIf="displayMessage === 'passwordcheck' ">
+    <p align="center">New Password cannot be same as Old Password</p>
+  </div>
+  <div *ngIf="displayMessage ==='temppassword'">
+    <p align="center">On submiting, temporary password will be sent to corresponding mail address!</p>
+  </div>
+  <div *ngIf="displayMessage ==='logout'">
+    <p align="center">Do you want to log out from Common Master?</p>
+  </div>
+
+  
+  
+  <!-- ****** SERVER MESSAGE ******** -->
+  <div *ngIf="data.server =='servermessage'">
+    <p align="center">{{displayMessage}}</p>
+  </div>
+  <div *ngIf="data.mess === 1 ">
+    <p align="center">{{data.message}}</p>
+  </div>
+
+  
+
+
+  <form *ngIf="data.message === null" #saveListForm [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <textarea matInput maxlength="250" matTextareaAutosize matAutosizeMaxRows=1 formControlName="remarks"
+        [(ngModel)]="data.reopen.remarks" placeholder="Remarks"></textarea>
+    </mat-form-field>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button mat-raised-button color="warn" class="btn-orange mr-10" [mat-dialog-close]="true" cdkFocusInitial
+          type="submit" [disabled]="!saveForm.valid">Save</button>
+        <button mat-raised-button color="warn" class="btn-basic mr-10" [mat-dialog-close]="false" type="reset">Cancel</button>
+      </div>
+    </div>
+    <br>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" *ngIf="data.btnPrjYes != undefined">
+  <button style="margin-left: 0px;" (click)="btnPrjYes()" mat-raised-button [mat-dialog-close]="true" class="dialogBtn"
+    cdkFocusInitial color="primary">{{data.btnPrjYes}}</button>
+  <button (click)="btnPrjNo()" *ngIf="data.btnPrjNo != undefined" mat-raised-button mat-dialog-close class="dialogBtn"
+    color="basic">{{data.btnPrjNo}}</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions align="center" *ngIf="data.btnYes != undefined">
+  <button mat-raised-button [mat-dialog-close]="true" class="dialogBtn" cdkFocusInitial
+    color="primary">{{data.btnYes}}</button>
+  <button *ngIf="data.btnNo != undefined" mat-raised-button mat-dialog-close class="dialogBtn"
+    color="basic">{{data.btnNo}}</button>
+</mat-dialog-actions>

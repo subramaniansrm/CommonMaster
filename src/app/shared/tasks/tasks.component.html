@@ -1,0 +1,239 @@
+<div id="myTasks" class="sidenav">
+  <ng-scrollbar>
+    <div class="row custom_sidenav pt-10 p-10">
+
+      <div class="col-md-12">
+
+        <h2 class="pb-5 border-bottom-lg feedtitle">Activity Feed</h2>
+        <div>
+
+          <p class="title">Pending Approval</p>
+
+          <div class="row activitycomponent">
+            <div class="col-md-12">
+
+
+
+              <div *ngFor="let tt of headerService.approvallist" [hidden]="tt.currentStatusId!==2"
+                class="row widgetcontent p-10" (click)="createDialogue(tt.requestId)">
+                <div class="col-md-10">
+                  <h4>{{tt.requestCode}}</h4>
+                  <p>{{tt.requestSubject}}</p>
+                  <div class="row">
+
+
+                    <div class="col-md-6 lightfont">
+
+                      <mat-icon class="error">date_range</mat-icon>
+                      <p class="lightfont dayleft">
+                        {{tt.requestDate | date:'dd-MMM-yyyy'}}
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+
+                      <mat-icon class="error yellow">person</mat-icon>
+                      <p class="lightfont dayleft">
+                        {{tt.userName}}
+                      </p>
+
+                    </div>
+
+                  </div>
+                </div>
+                <!--<div class="col-md-2 mt-20">
+
+                        <mat-icon>attach_file</mat-icon>
+
+                </div>-->
+
+              </div>
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!--<div class="pt-20">
+
+            <p class="title">My Tasks - pending</p>
+            <div class="row activitycomponent">
+              <div class="col-md-12">
+
+
+            <div class="row widgetcontent p-10" (click)="createDialogue()">
+                <div class="col-md-10">
+                  <h4>Building Maintence</h4>
+                  <p>Problem with Door</p>
+                 <div class="row">
+
+
+                  <div class="col-md-6 lightfont">
+                    22-12-2018
+                  </div>
+                  <div class="col-md-6">
+
+                        <mat-icon class="error">error</mat-icon>
+                        <p class="lightfont dayleft">
+                          1 day left
+                      </p>
+                  </div>
+                </div>
+              </div>
+                <div class="col-md-2 mt-10">
+                        <mat-icon>attach_file</mat-icon>
+                </div>
+          </div>
+          <div class="row widgetcontent p-10" (click)="createDialogue()">
+              <div class="col-md-10">
+                <h4>Building Maintence</h4>
+                <p>Problem with Door</p>
+               <div class="row">
+                <div class="col-md-6 lightfont">
+                  22-12-2018
+                </div>
+                <div class="col-md-6">
+                      <mat-icon class="error gray">error</mat-icon>
+                      <p class="lightfont dayleft">
+                        1 day left
+                      </p>
+                </div>
+              </div>
+            </div>
+              <div class="col-md-2 mt-20">
+                <mat-icon>attach_file</mat-icon>
+              </div>
+
+        </div>
+        <div class="row widgetcontent p-10" (click)="createDialogue()">
+            <div class="col-md-10">
+              <h4>Building Maintence</h4>
+              <p>Problem with Door</p>
+             <div class="row">
+              <div class="col-md-6 lightfont">
+                22-12-2018
+              </div>
+              <div class="col-md-6">
+                    <mat-icon class="error yellow">error</mat-icon>
+                    <p class="lightfont dayleft">
+                      1 day left
+                    </p>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-2 mt-20">
+                    <mat-icon>attach_file</mat-icon>
+            </div>
+      </div>
+      </div>
+      </div>
+      </div>-->
+        <!--<div class="pt-10 mb-20">
+          <p class="title">Escalation</p>
+          <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                    <mat-icon>warning</mat-icon>
+                    <div class="reqwarning">14 Resuests Escalated to Next level</div>
+            </div>
+          </div>
+    </div>-->
+      </div>
+    </div>  
+  </ng-scrollbar>
+</div>
+
+
+<div id="myTasks1" class="sidenav1">
+  <ng-scrollbar>
+    <div class="row custom_sidenav pt-10 p-10">
+
+      <div class="col-md-12">
+
+        <h2 class="pb-5 border-bottom-lg feedtitle">Mail Notification</h2>
+        <div>
+
+          <!-- <p class="title">Pending Approval</p>-->
+
+          <div class="row activitycomponent">
+
+            <div class="col-md-12 p-0">
+
+                <mat-accordion *ngFor="let kk of headerService.mailDetails1">
+                    <!-- <br> -->
+                    <mat-expansion-panel class="mb-10">
+                      <mat-expansion-panel-header>
+                        <div class=" row col-md-12 centerAlign">
+                          <div class="col-md-10">
+                            <mat-panel-title style="font-size: 13px;">
+                              {{kk.title}}
+                            </mat-panel-title>
+                          </div>
+                          <div class="col-md-2">
+                            <mat-panel-description>
+                              <mat-icon aria-label="Example icon-button with a heart icon"
+                                (click)="deletenotification(kk.mailParameterId)" style=" margin-right: 15px;"
+                                matTooltip="Delete">delete</mat-icon>
+                            </mat-panel-description>
+                          </div>
+                        </div>
+                       </mat-expansion-panel-header>
+                      <!-- <br> -->
+                      <pre
+                        style="border: 0px solid #ccc; margin-bottom: 0; white-space: pre-line;word-break: keep-all;">{{kk.message}}</pre>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+
+            </div>
+
+            
+
+              
+              <!-- <div *ngFor="let tt of headerService.approvallist" [hidden]="tt.currentStatusId!==2" class="row widgetcontent p-10" (click)="createDialogue(tt.requestId)">
+                  <div  class="col-md-10">
+                    <h4>{{tt.requestCode}}</h4>
+                    <p>{{tt.requestSubject}}</p>
+                   <div  class="row">
+                    <div class="col-md-6 lightfont">
+                     <mat-icon class="error">date_range</mat-icon>
+                          <p class="lightfont dayleft">
+                              {{tt.requestDate | date:'dd-MMM-yyyy'}}
+                          </p>
+                    </div>
+                    <div class="col-md-6">
+                          <mat-icon class="error yellow">person</mat-icon>
+                          <p class="lightfont dayleft">
+                            {{tt.userName}}
+                          </p>
+                    </div>
+                  </div>
+                </div>
+                </div>-->
+            
+            <!-- <div >
+                <div class=" row col-md-12 centerAlign">
+                  <a style = "color:#ffffff"> No Mail Notification</a>
+                </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-scrollbar>
+</div>

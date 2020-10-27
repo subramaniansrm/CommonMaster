@@ -1,0 +1,199 @@
+<div class="content-pageXXX container-fluid">
+  <div class="contentXXX main-content">
+    <article class="right-panel">
+      <app-left-nav></app-left-nav>
+      <h4 class="page-title">Authentication Add</h4>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <mat-form-field>
+              <textarea matInput readonly placeholder="User Name">
+                {{name}}
+              </textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <button mat-raised-button color="primary" style="background-color: #005181;" class="m-2" (click)="onSubmit()"
+            type="submit">Submit </button>
+          &nbsp;&nbsp; <button mat-raised-button color="basic" type="reset" (click)="cancel()">Back</button>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+
+
+      <div class="row">
+        <div class="col-md-3 mt-15">
+          <div class="scrollbar" id="style-8">
+            <div class="force-overflow">
+              <mat-toolbar>SCREENS</mat-toolbar>
+              <div class="card-box">
+
+                <div *ngFor="let item of screenCombo;  let i = index"
+                  [ngClass]="item.activeFlag === true ? 'highlight-bg' : ''">
+                  <mat-checkbox (change)="getsubScreenValues($event,item.screenId)">
+                    {{item.name}}
+                  </mat-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-3 mt-15" *ngIf="subscreenList.length  > 0">
+          <div class=" scrollbar" id="style-8">
+            <div class="force-overflow">
+              <mat-toolbar>SUBSCREEN</mat-toolbar>
+              <div class="card-box">
+
+                <div *ngFor="let subscreen of subscreenList;  let i = index"
+                  [ngClass]="subscreen.activeFlag === true ? 'highlight-bg' : ''">
+                  <mat-checkbox (change)="getfieldsValues($event,subscreen.subScreenId)">
+                    {{subscreen.name}}
+                  </mat-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-3  mt-15" *ngIf="screenFieldList.length > 0">
+          <div class="scrollbar" id="style-8">
+            <div class="force-overflow">
+              <mat-toolbar>SCREEN FIELDS</mat-toolbar>
+              <div class="card-box">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>
+                        <mat-checkbox name="baseFilter" (change)="allNonTrades($event)">
+                        </mat-checkbox>
+                        Field Name
+                      </th>
+                      <!-- <th>Base Filter</th>-->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of screenFieldList;  let k = index"
+                      [ngClass]="item.activeFlag === true ? 'highlight-bg' : ''">
+                      <td>
+                        <mat-checkbox [checked]="item.activeFlag"
+                          (change)="selectFields($event, item.screenFieldId, item)">
+                          {{item.name}}
+                        </mat-checkbox>
+                      </td>
+                      <td style="display:none">
+                        <mat-checkbox [checked]="item.activeFlag" [(ngModel)]="item.activeFlag"
+                          (change)="baseFilterCheck($event, item.screenFieldId, item)" [disabled]="!item.activeFlag">
+                        </mat-checkbox>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <div *ngFor="let item of screenFieldList;  let i = index">
+                                      <mat-checkbox   (change)="getfieldsValues($event,item.id)">
+                                          {{item.name}}
+                                        </mat-checkbox>
+                                      </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="col-md-3  mt-15" *ngIf="screenFucntionList.length > 0">
+          <div class="scrollbar" id="style-8">
+            <div class="force-overflow">
+              <mat-toolbar>SCREEN FUNCTIONS</mat-toolbar>
+              <div class="card-box">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>
+                        <mat-checkbox name="baseFilter" (change)="allNonTradesFunction($event)">
+                        </mat-checkbox>
+                        Function Name
+                      </th>
+                      <!-- <th>Base Filter</th>-->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of screenFucntionList;  let k = index"
+                      [ngClass]="item.activeFlag === true ? 'highlight-bg' : ''">
+                      <td>
+                        <mat-checkbox [checked]="item.activeFlag"
+                          (change)="selectFunctions($event, item.screenFunctionId, item)">
+                          {{item.name}}
+                        </mat-checkbox>
+                      </td>
+                      <td style="display:none">
+                        <mat-checkbox [checked]="item.activeFlag" [(ngModel)]="item.activeFlag"
+                          (change)="baseFilterCheckFunction($event, item.screenFunctionId, item)"
+                          [disabled]="!item.activeFlag">
+                        </mat-checkbox>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <div *ngFor="let item of screenFieldList;  let i = index">
+                                    <mat-checkbox   (change)="getfieldsValues($event,item.id)">
+                                        {{item.name}}
+                                            </mat-checkbox>
+                                    </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- 
+                            <div  class="col-md-3  mt-15" *ngIf="screenFucntionList.length > 0">
+                                <div class="scrollbar" id="style-8">
+                                  <div class="force-overflow">
+                                    <mat-toolbar>FUNCTIONS</mat-toolbar>
+                                    <div class="card-box">
+                                      <div *ngFor="let item of screenFucntionList;  let i = index" [ngClass]="item.activeFlag === true ? 'highlight-bg' : ''">
+                                        <mat-checkbox [checked]="item.activeFlag"  (change)="selectFunctions($event,item.screenFunctionId, item)">
+                                            {{item.name}}
+                                          </mat-checkbox>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div> -->
+
+
+
+
+
+
+
+
+
+    </article>
+  </div>
+</div>

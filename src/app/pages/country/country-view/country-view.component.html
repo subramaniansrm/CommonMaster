@@ -1,0 +1,36 @@
+<div class="content-pageXXX container-fluid">
+
+  <form #saveListForm [formGroup]="saveForm">
+    <div class="contentXXX main-content">
+      <article class="right-panel">
+        <app-left-nav></app-left-nav>
+        <h4 class="page-title">Country View</h4>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Country Code" formControlName="countryCode">
+                </mat-form-field>
+              </div>
+
+
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Country Name" formControlName="country">
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button mat-raised-button color="warn" class="btn-orange" routerLink="/country">Back</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </form>
+</div>

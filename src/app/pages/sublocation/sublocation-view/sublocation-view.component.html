@@ -1,0 +1,43 @@
+
+<div class="content-pageXXX container-fluid">
+    <form #modifyListForm [formGroup]="viewForm">
+      <div class="contentXXX main-content">
+        <app-left-nav></app-left-nav>
+        <article class="right-panel">
+          <h4 class="page-title">Sub Location View</h4>
+          <div class="card">
+            <div class="card-body">
+          <div class="row">
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'subLocationCode' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Code" formControlName="subLocationCode" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'id' ">
+              <mat-form-field class="example-full-width readonly-wrapper">
+                <mat-select placeholder="Location Name" formControlName="id">
+                  <mat-option *ngFor="let userLocation of SL_selectFormGetDate" [value]="userLocation.id">
+                    {{userLocation.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'subLocationName' ">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Sublocation Name" formControlName="subLocationName" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-15 readonly-wrapper" *ngIf="userBaseFieldName | arrayFilter : 'subLocationIsActive' ">
+              <mat-checkbox formControlName="subLocationIsActive">Active</mat-checkbox>
+            </div>
+          </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button mat-raised-button color="warn" class="btn-orange" routerLink="/sublocation">Back</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </form>
+  </div>

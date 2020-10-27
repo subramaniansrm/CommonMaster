@@ -1,0 +1,165 @@
+<div class="content-pageXXX container-fluid">
+
+  <form #saveListForm [formGroup]="saveForm">
+    <div class="contentXXX main-content">
+      <article class="right-panel">
+        <app-left-nav></app-left-nav>
+        <h4 class="page-title">User View</h4>
+        <div class="col-md-12">
+          <mat-card>
+            <div class="row readonly-wrapper">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLoginId' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="User Login Id" formControlName="userLoginId" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userEmployeeId' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Employee Id" formControlName="userEmployeeId" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'firstName' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="First Name" formControlName="firstName" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'middleName' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Middle Name" formControlName="middleName" readonly>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row readonly-wrapper">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'lastName' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Last Name" formControlName="lastName" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userLocation' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="User Location" formControlName="userLocation">
+                    <mat-option *ngFor="let location of userLocationCombo" [value]="location.id">
+                      {{location.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'subLocation' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="User SubLocation" formControlName="subLocation">
+                    <mat-option *ngFor="let sublocation of userSubLocationCombo" [value]="sublocation.id">
+                      {{sublocation.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userRole' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="User Role" formControlName="userRole">
+                    <mat-option *ngFor="let role of userRoleCombo" [value]="role.id">
+                      {{role.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'userDepartment' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="User Department" formControlName="userDepartment">
+                    <mat-option *ngFor="let department of userDeptCombo" [value]="department.id">
+                      {{department.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+
+
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-select multiple  placeholder="Module" formControlName="moduleId">
+                 
+                    
+                    <input type="text" placeholder="Search.." class="advanceddropSearchTextbox"
+                      [(ngModel)]="divisionFilter" [ngModelOptions]="{standalone: true}">
+                    <mat-option class="select-span"  >Select Here</mat-option>
+                    <mat-option *ngFor="let mod of module  | dropdownFilter : {moduleName: divisionFilter}"
+                 [value]="mod.moduleId"> {{mod.moduleName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'division' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Division" formControlName="division">
+                    <mat-option *ngFor="let division of userDivisionCombo" [value]="division.id">
+                      {{division.division}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'commonId' ">
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="Level" formControlName="commonId">
+                    <mat-option *ngFor="let level of levelCombo" [value]="level.commonId">
+                      {{level.itemValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'emailId' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email Id" formControlName="emailId" readonly>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row readonly-wrapper">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'phoneNumber' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Phone Number" formControlName="phoneNumber" readonly>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'mobile' ">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Mobile" formControlName="mobile" readonly>
+                </mat-form-field>
+              </div>
+           <!--   <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'password' ">
+                <mat-form-field>
+                  <input matInput placeholder="Password" type="text" formControlName="password">
+                  <mat-icon class="eyeicon" matSuffix (click)="hide1 = !hide1">
+                    {{hide1 ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'password' ">
+                <mat-form-field>
+                  <input matInput placeholder="Confirm Password" type="text" formControlName="confirmPassword">
+                  <mat-icon class="eyeicon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
+                  </mat-icon>
+                </mat-form-field>
+              </div> -->
+            </div> 
+            <div class="row">
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'currentAddress' ">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Current Address" formControlName="currentAddress" readonly></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3" *ngIf="userBaseFieldName | arrayFilter : 'permanentAddress' ">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Permanent Address" formControlName="permanentAddress"
+                    readonly></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 readonly-wrapper" style="margin-top: 17px;" *ngIf="userBaseFieldName | arrayFilter : 'activeFlag' ">
+                <mat-checkbox formControlName="activeFlag">Active</mat-checkbox>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <br>
+            <button mat-raised-button color="warn" class="btn-orange" routerLink="/user">Back</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </form>
+</div>

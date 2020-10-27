@@ -1,0 +1,165 @@
+
+
+<div class="hamberger_toggle" (mousedown)="increase()">
+  <div id="menuToggle">
+    <mat-icon>menu</mat-icon>
+  </div>
+</div>
+
+
+  <aside class="left-panel mobile-left-panel">
+
+
+  <div class="logo-sec">
+    <figure>
+      <img src="assets/img/login/logo.png" alt=" " class="logo" />
+      <img src="assets/img/login/logo.png" alt="" class="logo_srmav" (click)="dashboard()" />
+    </figure>
+  </div>
+
+
+
+  <div class="side-nav" [ngStyle]="{ 'width.px': sidenavWidth }">
+    <ul>
+
+      <li>
+        <a href="javascript:;">
+          <figure>
+
+            <span>
+              <i class=""><img src="assets/img/profile1.png" class="img-responsive user_img" /></i>
+            </span>
+            
+             <span class="leftMenu_userName_sec" *ngIf="sidenavWidth > 55">
+              <span class="leftMenu_userName">
+                <a href="javascript:;" *ngIf="userDetails"
+                  routerLink="/userprofile">{{ userName }}</a></span>
+
+
+
+              <span class="leftMenu_userName leftMenu_userIcons">
+                <!-- <a href="javascript:;" routerLink="/changepassword">
+                  <mat-icon matTooltip="Change Password">settings</mat-icon>
+                </a> -->
+                <a href="javascript:;" (click)="logout()">
+                  <mat-icon matTooltip="Log Out">power_settings_new</mat-icon>
+                </a>
+              </span>
+            </span>
+          </figure>
+          <p> User <br>Name </p>
+        </a>
+      </li>
+
+      <li>
+        <a href="javascript:;" (click)="routerUrlCofig('/dashboard')">
+          <figure>
+            <span>
+              <mat-icon class="font-46" matTooltip="Dashboard">poll</mat-icon>
+            </span>
+            <span class="leftMenu_name" *ngIf="sidenavWidth > 55">Dashboard</span>
+          </figure>
+          <!-- <p> KEVA <br>KIOSK </p> -->
+        </a>
+        <hr>
+      </li>
+
+      <!-- <li>
+        <a href="javascript:;" (click)="tray('/dashboard')">
+          <figure>
+            <span>
+              <mat-icon class="font-46" matTooltip="tray">poll</mat-icon>
+            </span>
+            <span class="leftMenu_name" *ngIf="sidenavWidth > 55">Tray</span>
+          </figure>
+        </a>
+        <hr>
+      </li> -->
+
+      <li *ngIf="masterlist!=='' && masterlist.length!==0">
+        <a href="javascript:;" (click)="onSelect1()">
+          <figure>
+            <span>
+              <mat-icon class="font-46" matTooltip="Master">perm_data_setting</mat-icon>
+            </span>
+            <span class="leftMenu_name" *ngIf="sidenavWidth > 55">Master</span>
+          </figure>
+          <p> PHONE <br>BOOK </p>
+        </a>
+        <ul [hidden]="IsHidden">
+          <li *ngFor="let tt of masterlist">
+            <a href="javascript:;" (click)="routerUrlCofig(tt.screenUrl)">
+              <figure>
+                <span>
+                  <mat-icon class="font-46" matTooltip="{{tt.screenName}}">{{tt.screenIcon}}</mat-icon>
+                </span>
+                <span class="leftMenu_name" *ngIf="sidenavWidth > 55">{{tt.screenName}}</span>
+              </figure>
+              <p> PHONE <br>BOOK </p>
+            </a>
+            <hr>
+          </li>
+
+        </ul>
+        <hr>
+      </li>
+
+      <!-- <li *ngIf="configlist!=='' && configlist.length!==0">
+        <a href="javascript:;" (click)="onSelect2()">
+          <figure>
+            <span>
+              <mat-icon class="font-46" matTooltip="Configuration">rv_hookup</mat-icon>
+            </span>
+            <span class="leftMenu_name" *ngIf="sidenavWidth > 55">Configuration</span>
+          </figure>
+          <p> PHONE <br>BOOK </p>
+        </a>
+        <ul [hidden]="IsIsHidden">
+          <li *ngFor="let tt of configlist">
+            <a href="javascript:;"  (click)="routerUrlCofig(tt.screenUrl)">
+              <figure>
+                <span>
+                  <mat-icon class="font-46" matTooltip="{{tt.screenName}}">{{tt.screenIcon}}</mat-icon>
+                </span>
+                <span class="leftMenu_name" *ngIf="sidenavWidth > 55">{{tt.screenName}}</span>
+              </figure>
+              <p> ROOM<br> BOOKING </p>
+            </a>
+            <hr>
+          </li>
+        </ul>
+
+        <hr>
+      </li> -->
+
+      <!-- <li *ngIf="transactionlist!=='' && transactionlist.length!==0">
+        <a href="javascript:;" (click)="onSelect3()">
+          <figure>
+            <span>
+              <mat-icon class="font-46" matTooltip="General">pages</mat-icon>
+            </span>
+            <span class="leftMenu_name" *ngIf="sidenavWidth > 55">General</span>
+          </figure>
+          <p> PHONE <br>BOOK </p>
+        </a>
+        <ul [hidden]="IsIsIsHidden">
+          <li *ngFor="let tt of transactionlist">
+            <a href="javascript:;"  (click)="routerUrlCofig(tt.screenUrl)">
+              <figure>
+                <span>
+                  <mat-icon class="font-46" matTooltip="{{tt.screenName}}">{{tt.screenIcon}}</mat-icon>
+                </span>
+                <span class="leftMenu_name" *ngIf="sidenavWidth > 55">{{tt.screenName}}</span>
+              </figure>
+              <p> ROOM<br> BOOKING </p>
+            </a>
+            <hr>
+          </li>
+        </ul>
+        <hr>
+      </li> -->
+      
+    </ul>
+  </div>
+
+</aside>

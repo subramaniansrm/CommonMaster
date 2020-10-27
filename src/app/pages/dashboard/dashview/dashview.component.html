@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="main-content">
+
+    <app-left-nav></app-left-nav>
+    <app-tasks></app-tasks>
+
+    <article class="right-panel">
+      <div class="row main-container">
+        <!-- <div class="col-md-2 " *ngFor="let count of countList">
+          <mat-card class="mt-10 matCard">
+            <mat-card-title>
+
+            </mat-card-title>
+            <mat-card-body>
+              <div class="matCardBody ">
+                <a>
+                  <span class="matCardBodySpan" (click)="route(count.modulePath)">
+                    {{count.moduleName}}
+                  </span>
+                </a>
+              </div>
+            </mat-card-body>
+          </mat-card>
+        </div> -->
+
+        <!-- <div class="list">
+          <ul class="dashboard-items">
+              <li  *ngFor="let count of countList">
+                  <a (click)="route(count.modulePath)">
+                      <span class="top"></span>
+                      <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
+                      <span class="title"> {{count.moduleName}}</span>
+                      <span class="bottom"></span>
+                      <span class="bottom"></span>
+                  </a>
+                  <span>&nbsp;</span>
+              </li>
+            
+              </ul>
+            </div> -->
+     
+     
+            <div class="list">
+              <ul class="dashboard-items">
+                  <li  *ngFor="let tt of countList">
+                    <a href="javascript:;" (click)="routerUrlCofig(tt.screenUrl)">
+                    
+                        <span class="top"></span>
+                        <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
+                        <span class="title"> {{tt.screenName}}</span>
+                        <span class="bottom"></span>
+                        <span class="bottom"></span>
+                     
+                     
+                    </a>
+                      <span>&nbsp;</span>
+                  </li>
+                  </ul>
+                </div>     </div>
+
+    </article>
+  </div>
+
+</div>

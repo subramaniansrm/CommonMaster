@@ -1,0 +1,108 @@
+<div class="content-page">
+  <div class="content">
+
+    <h4 class="page-title">Master</h4>
+
+ <mat-grid-list cols="1" align="start">
+ <h4><b>Advanced Search</b></h4>
+ 
+<mat-form-field>
+   <select matNativeControl required>
+    <option value="Code">Code</option>
+    <option value="Name">Name</option>
+    <option value="Active">Active</option>
+     </select>
+</mat-form-field>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<mat-form-field>
+          <input matInput value="88">
+        </mat-form-field>
+	<button mat-icon-button >
+          <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="Add">add</mat-icon>
+        </button>
+</mat-grid-list>
+<div id="advancedSearch"></div>
+<button _ngcontent-c4="" class="btn-orange mr-10 mat-raised-button mat-warn" color="warn" mat-raised-button="" ng-reflect-color="warn"><span class="mat-button-wrapper">Search</span><div class="mat-button-ripple mat-ripple" matripple="" ng-reflect-centered="false" ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]"></div><div class="mat-button-focus-overlay"></div></button>
+    <mat-grid-list cols="1" align="end">
+        <mat-form-field>
+          <input matInput  placeholder="Filter">
+        </mat-form-field>
+
+        <button mat-icon-button routerLink="/requesttype-add">
+          <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="Add">add</mat-icon>
+        </button>
+
+        <button mat-icon-button >
+          <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="Modify">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="View">visibility</mat-icon>
+        </button>
+
+        <button mat-icon-button >
+          <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="Delete">delete</mat-icon>
+        </button>
+    </mat-grid-list>
+
+    <!-- <div class="mat-elevation-z8">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort class="dTable">
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'text-center'" style="width:50px;">
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="'text-center'">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event  ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)" (change)="row.highlighted = !row.highlighted">
+              </mat-checkbox>
+            </td>
+          </ng-container> -->
+          
+
+          <!-- <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'text-center'"> S.No </th>
+            <td mat-cell *matCellDef="let row" [ngClass]="'text-center'"> {{row.position}} </td>
+          </ng-container> -->
+          
+          <!-- <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+            <td mat-cell *matCellDef="let row"> {{row.requestTypeCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.requestTypeName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Active </th>
+            <td mat-cell *matCellDef="let row"> {{row.requestTypeIsActive}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="userBaseFieldName"></tr>
+          <tr mat-row *matRowDef="let row;  columns:userBaseFieldName" (click)="row.highlighted = !row.highlighted"
+            (click)=" selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"
+            (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr> -->
+
+          <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="row.highlighted = !row.highlighted" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"  (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+            </tr>-->
+        <!-- </table>
+
+        <div [hidden]="displayNoRecords" class="p-10">
+          <h3 class="noRecordGrid">No Record Found...</h3>
+        </div>  
+        
+
+      </div>
+      <mat-paginator [pageSizeOptions]="[5]" [hidePageSize]="true" showFirstLastButtons></mat-paginator>
+
+    </div> -->
+
+  </div>
+</div>
